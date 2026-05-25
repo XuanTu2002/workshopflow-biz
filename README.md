@@ -1,73 +1,91 @@
-# Welcome to your Lovable project
+# MechERP — Hệ thống quản lý xưởng cơ khí
 
-## Project info
+MechERP là ứng dụng web quản lý toàn diện dành cho xưởng sản xuất cơ khí. Hệ thống giúp chủ xưởng theo dõi đơn hàng, sản xuất, kho vật tư, nhân sự và doanh thu trên một nền tảng duy nhất.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+## Tính năng chính
 
-There are several ways of editing your application.
+| Module | Mô tả |
+|--------|-------|
+| **Tổng quan (Dashboard)** | Thống kê nhanh đơn hàng mới, số lệnh đang sản xuất, cảnh báo tồn kho thấp, doanh thu tháng; biểu đồ trạng thái sản xuất và doanh thu; danh sách đơn hàng gần đây |
+| **Đại lý & Đơn hàng** | Quản lý danh sách đơn hàng theo đại lý, theo dõi trạng thái (Chờ duyệt → Cắt phôi → Đang SX → QC → Hoàn thành), công nợ & đặt cọc |
+| **Sản phẩm & BOM** | Quản lý danh mục sản phẩm (cửa sắt, lan can inox, cổng, nội thất…), định mức vật tư (Bill of Materials) cho từng sản phẩm |
+| **Sản xuất** | Theo dõi lệnh sản xuất (LSX) theo từng công đoạn: Cắt phôi → Hàn/Cơ khí → Sơn tĩnh điện → Lắp ráp → QC; hiển thị tiến độ % và tổ đội phụ trách |
+| **Kho vật tư** | Quản lý tồn kho nguyên liệu và thành phẩm, cảnh báo khi tồn kho dưới mức tối thiểu, hỗ trợ nhập kho |
+| **Nhân sự & Lương** | Danh sách thợ theo tổ đội, tính lương khoán theo sản phẩm, bảng lương hàng tháng |
+| **Báo cáo** | Tổng hợp báo cáo kinh doanh và sản xuất |
+| **Cài đặt** | Cấu hình hệ thống |
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Công nghệ sử dụng
 
-Changes made via Lovable will be committed automatically to this repo.
+- **React 18** + **TypeScript** — nền tảng UI
+- **Vite** — build tool và dev server
+- **React Router v6** — điều hướng client-side
+- **TanStack Query (React Query v5)** — quản lý state & fetching dữ liệu
+- **Tailwind CSS** — styling utility-first
+- **shadcn/ui** + **Radix UI** — bộ component giao diện
+- **Framer Motion** — animation chuyển trang
+- **Recharts** — biểu đồ thống kê
+- **React Hook Form** + **Zod** — form và validation
+- **Vitest** + **Playwright** — unit test và E2E test
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Cài đặt & Chạy dự án
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+**Yêu cầu:** Node.js ≥ 18 và npm (hoặc bun).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# 1. Clone repository
+git clone https://github.com/XuanTu2002/workshopflow-biz.git
+cd workshopflow-biz
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# 2. Cài đặt dependencies
+npm install
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 3. Chạy môi trường phát triển
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Ứng dụng sẽ chạy tại `http://localhost:5173`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Scripts
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+| Lệnh | Mô tả |
+|------|-------|
+| `npm run dev` | Khởi động dev server với hot-reload |
+| `npm run build` | Build production |
+| `npm run build:dev` | Build ở chế độ development |
+| `npm run preview` | Xem trước bản build |
+| `npm run lint` | Kiểm tra lỗi ESLint |
+| `npm run test` | Chạy unit test (Vitest) |
+| `npm run test:watch` | Chạy unit test ở chế độ watch |
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## Cấu trúc thư mục
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```
+src/
+├── components/
+│   ├── dashboard/      # Các widget của trang Tổng quan
+│   ├── layout/         # AppLayout, AppSidebar
+│   └── ui/             # Component dùng chung (shadcn/ui)
+├── hooks/              # Custom React hooks
+├── lib/                # Tiện ích (utils, helpers)
+├── pages/              # Các trang chính của ứng dụng
+│   ├── Dashboard.tsx
+│   ├── OrdersPage.tsx
+│   ├── ProductsPage.tsx
+│   ├── ProductionPage.tsx
+│   ├── InventoryPage.tsx
+│   ├── HRPage.tsx
+│   ├── ReportsPage.tsx
+│   └── SettingsPage.tsx
+└── App.tsx             # Cấu hình routing
+```
